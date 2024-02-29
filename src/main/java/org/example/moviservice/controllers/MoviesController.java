@@ -22,25 +22,25 @@ public class MoviesController {
         connection.setRequestMethod("GET");
         connection.connect();
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String jsonContent = "";
+        StringBuilder jsonContentBuilder = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null) {
-            jsonContent += line;
+            jsonContentBuilder.append(line);
         }
         reader.close();
+
+        String jsonContent = jsonContentBuilder.toString();
         return jsonContent;
     }
 
     public Search[] jsonToPojo(String jsonContent) throws IOException{
         ObjectMapper objMap = new ObjectMapper();
-        MyclassFromJson Search = objMap.readValue(jsonContent, MyclassFromJson.class);
-        return Search.getSearch();
+        MyclassFromJson search = objMap.readValue(jsonContent, MyclassFromJson.class);
+        return search.getSearch();
     }
 
     @GetMapping("/movies")//поменять название
     public Search[] movies() throws IOException {
-        String query = "Thor: Ragnarok";
-        System.out.println(searchPage(query));
-        return jsonToPojo(searchPage(query));
+        return jsonToPojo(searchPage("Thor: Ragnarok"));
     }
 }
