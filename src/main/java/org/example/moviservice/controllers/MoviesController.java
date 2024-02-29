@@ -28,9 +28,8 @@ public class MoviesController {
             jsonContentBuilder.append(line);
         }
         reader.close();
-
-        String jsonContent = jsonContentBuilder.toString();
-        return jsonContent;
+        
+        return jsonContentBuilder.toString();
     }
 
     public Search[] jsonToPojo(String jsonContent) throws IOException{
