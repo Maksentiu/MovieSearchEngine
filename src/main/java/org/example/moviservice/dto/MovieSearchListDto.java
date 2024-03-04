@@ -31,7 +31,8 @@ public class MovieSearchListDto {
         return search;
     }
 
-    public void setSearch(MovieDto[] Search) {
-        this.search = Search;
+    public void setSearch(MovieDto[] search) {
+        this.search = search;
     }
+
 }
