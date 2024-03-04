@@ -1,7 +1,11 @@
 package org.example.moviservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class MovieSearchListDto {
     @JsonProperty
     private MovieDto[] search;
@@ -11,28 +15,5 @@ public class MovieSearchListDto {
 
     @JsonProperty
     private String response;
-
-    public String getResponse() {
-        return response;
-    }
-
-    public void setResponse(String response) {
-        this.response = response;
-    }
-    public String getTotalResults() {
-        return totalResults;
-    }
-
-    public void setTotalResults(String totalResults) {
-        this.totalResults = totalResults;
-    }
-
-    public MovieDto[] getSearch() {
-        return search;
-    }
-
-    public void setSearch(MovieDto[] search) {
-        this.search = search;
-    }
 
 }
