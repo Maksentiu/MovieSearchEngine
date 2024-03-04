@@ -39,7 +39,7 @@ public class MoviesController {
     }
 
     @GetMapping("/movies")//поменять название
-    public Search[] movies() throws IOException {
-        return jsonToPojo(searchPage("Thor: Ragnarok"));
+    public Search[] movies(@RequestParam String query) throws IOException {
+        return jsonToPojo(searchPage(query));
     }
 }
