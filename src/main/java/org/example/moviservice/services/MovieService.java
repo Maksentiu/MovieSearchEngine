@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 public class MovieService {
@@ -43,6 +41,7 @@ public class MovieService {
         replaceAll(jsonContentBuilder, "Poster", "poster");
         replaceAll(jsonContentBuilder, "Type", "type");
         replaceAll(jsonContentBuilder, "Search", "search");
+        replaceAll(jsonContentBuilder, "Response", "response");
 
         ObjectMapper objMap = new ObjectMapper();
         MovieSearchListDto search = objMap.readValue(jsonContentBuilder.toString(), MovieSearchListDto.class);
