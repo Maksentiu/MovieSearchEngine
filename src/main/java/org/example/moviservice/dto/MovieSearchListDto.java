@@ -10,14 +10,14 @@ public class MovieSearchListDto {
     private String totalResults;
 
     @JsonProperty
-    private String Response;
+    private String response;
 
     public String getResponse() {
-        return Response;
+        return response;
     }
 
     public void setResponse(String response) {
-        Response = response;
+        this.response = response;
     }
     public String getTotalResults() {
         return totalResults;
@@ -34,7 +34,4 @@ public class MovieSearchListDto {
     public void setSearch(MovieDto[] Search) {
         this.search = Search;
     }
-
-
-
 }
