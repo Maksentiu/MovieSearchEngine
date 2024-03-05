@@ -1,6 +1,5 @@
 package org.example.moviservice.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,15 +7,15 @@ import lombok.Setter;
 @Setter
 @Getter
 public class MovieDto {
-    @JsonProperty
+    @JsonProperty("Title")
     private String title;
-    @JsonProperty
+    @JsonProperty("Year")
     private String year;
-    @JsonProperty
+    @JsonProperty("imdbID")
     private String imdbID;
-    @JsonProperty
+    @JsonProperty("Type")
     private String type;
-    @JsonProperty
+    @JsonProperty("Poster")
     private String poster;
 
 }
