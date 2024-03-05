@@ -14,14 +14,6 @@ import java.net.URL;
 @Service
 public class MovieService {
 
-    public static void replaceAll(StringBuilder builder, String from, String to) {
-        int index = builder.indexOf(from);
-        while (index != -1) {
-            builder.replace(index, index + from.length(), to);
-            index += to.length(); // Переходим к концу замененной строки
-            index = builder.indexOf(from, index);
-        }
-    }
     public MovieDto[] jsonToPojo(String query) throws IOException {
         String url = "https://www.omdbapi.com/?s=" + query + "&page=1&apikey=19b0b951";
         URL apiUrl = new URL(url);
@@ -35,13 +27,6 @@ public class MovieService {
             jsonContentBuilder.append(line);
         }
         reader.close();
-
-        replaceAll(jsonContentBuilder, "Title", "title");
-        replaceAll(jsonContentBuilder, "Year", "year");
-        replaceAll(jsonContentBuilder, "Poster", "poster");
-        replaceAll(jsonContentBuilder, "Type", "type");
-        replaceAll(jsonContentBuilder, "Search", "search");
-        replaceAll(jsonContentBuilder, "Response", "response");
 
         ObjectMapper objMap = new ObjectMapper();
         MovieSearchListDto search = objMap.readValue(jsonContentBuilder.toString(), MovieSearchListDto.class);
