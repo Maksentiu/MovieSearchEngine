@@ -7,13 +7,11 @@ import lombok.Setter;
 @Setter
 @Getter
 public class MovieSearchListDto {
-    @JsonProperty
+    @JsonProperty("Search")
     private MovieDto[] search;
-
-    @JsonProperty
+    @JsonProperty("totalResults")
     private String totalResults;
-
-    @JsonProperty
+    @JsonProperty("Response")
     private String response;
 
 }
