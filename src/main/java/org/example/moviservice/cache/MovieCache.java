@@ -8,17 +8,17 @@ import java.util.Map;
 
 @Component
 public class MovieCache {
-    private final Map<Long, MovieDto> movieCache = new HashMap<>();
+    private final Map<Long, MovieDto> cache = new HashMap<>();
 
     public MovieDto getMovieById(Long id) {
-        return movieCache.get(id);
+        return cache.get(id);
     }
 
     public void putMovieById(Long id, MovieDto movieDto) {
-        movieCache.put(id, movieDto);
+        cache.put(id, movieDto);
     }
 
     public void evictMovie(Long id) {
-        movieCache.remove(id);
+        cache.remove(id);
     }
 }
