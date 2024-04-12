@@ -127,7 +127,7 @@ public class MovieService {
     public List<MovieDto> moviesToMovieDtos(List<Movie> movies) {
         return movies.stream()
                 .map(this::movieToMovieDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public MovieDto movieToMovieDto(Movie movie) {
