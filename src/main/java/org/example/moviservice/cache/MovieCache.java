@@ -18,7 +18,7 @@ public class MovieCache {
         return cache.get(id);
     }
 
-    private void evictOldestEntry() {
+    public void evictOldestEntry() {
         Long oldestKey = null;
         for (Long key : cache.keySet()) {
             if (oldestKey == null || key < oldestKey) {

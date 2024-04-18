@@ -175,8 +175,12 @@ public class MovieServiceTest {
         existingActor.setId(1L);
         existingActor.setName("John Doe");
 
+        // Создаем Movie объект, который будет возвращен при вызове findById
+        Movie movieToReturn = new Movie();
+        movieToReturn.setTitle("Original Movie Title");
+
         // Устанавливаем поведение мокитированных репозиториев
-        when(movieRepository.findById(1L)).thenReturn(Optional.of(new Movie()));
+        when(movieRepository.findById(1L)).thenReturn(Optional.of(movieToReturn));
         when(actorService.actorExist(actorDto)).thenReturn(existingActor);
         when(movieRepository.save(any(Movie.class))).thenReturn(new Movie());
 
@@ -186,6 +190,7 @@ public class MovieServiceTest {
         // Проверяем, что результат соответствует ожиданиям
         assertEquals("Updated Movie", updatedMovieDto.getTitle());
     }
+
 
     @Test
     void testDeleteMovie() {
