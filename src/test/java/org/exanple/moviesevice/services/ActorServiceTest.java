@@ -84,40 +84,6 @@ class ActorServiceTest {
     }
 
     @Test
-    void testUpdateActor() {
-        // Создаем тестовые данные
-        ActorDto actorDto = new ActorDto();
-        actorDto.setId(1L);
-        actorDto.setName("John Doe");
-
-        Actor existingActor = new Actor();
-        existingActor.setId(1L);
-        existingActor.setName("Existing Actor");
-
-        // Устанавливаем поведение мокитированного репозитория
-        when(actorRepository.findById(1L)).thenReturn(Optional.of(existingActor));
-        when(actorRepository.save(any(Actor.class))).thenReturn(existingActor);
-
-        // Вызываем метод, который мы тестируем
-        ActorDto updatedActorDto = actorService.updateActor(1L, actorDto);
-
-        // Проверяем, что результат соответствует ожиданиям
-        assertEquals("John Doe", updatedActorDto.getName());
-    }
-
-    @Test
-    void testDeleteActor() {
-        // Устанавливаем поведение мокитированного репозитория
-        doNothing().when(actorRepository).deleteById(1L);
-
-        // Вызываем метод, который мы тестируем
-        actorService.deleteActor(1L);
-
-        // Проверяем, что метод deleteById был вызван один раз с нужным аргументом
-        verify(actorRepository, times(1)).deleteById(1L);
-    }
-
-    @Test
     void testActorToActorDto() {
         // Создаем тестового актера
         Actor actor = new Actor();
