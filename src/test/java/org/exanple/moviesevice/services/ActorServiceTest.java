@@ -84,6 +84,28 @@ class ActorServiceTest {
     }
 
     @Test
+    void testUpdateActor() {
+        // Создаем тестовые данные
+        ActorDto actorDto = new ActorDto();
+        actorDto.setId(1L);
+        actorDto.setName("John Doe");
+
+        Actor existingActor = new Actor();
+        existingActor.setId(1L);
+        existingActor.setName("Existing Actor");
+
+        // Устанавливаем поведение мокитированного репозитория
+        when(actorRepository.findById(1L)).thenReturn(Optional.of(existingActor));
+        when(actorRepository.save(any(Actor.class))).thenReturn(existingActor);
+
+        // Вызываем метод, который мы тестируем
+        ActorDto updatedActorDto = actorService.updateActor(1L, actorDto);
+
+        // Проверяем, что результат соответствует ожиданиям
+        assertEquals("John Doe", updatedActorDto.getName());
+    }
+
+    @Test
     void testActorToActorDto() {
         // Создаем тестового актера
         Actor actor = new Actor();
@@ -111,26 +133,6 @@ class ActorServiceTest {
         // Проверяем, что результат соответствует ожиданиям
         assertEquals(1L, actor.getId());
         assertEquals("Test Actor", actor.getName());
-    }
-
-    @Test
-    void testUpdateActorFromDto() {
-        // Создаем мок объекта Actor
-        Actor actor = mock(Actor.class);
-
-        // Создаем тестовый DTO актера
-        ActorDto actorDto = new ActorDto();
-        actorDto.setId(1L);
-        actorDto.setName("Updated Actor Name");
-
-        // Устанавливаем поведение мок объекта
-        when(actor.getName()).thenReturn("Old Actor Name");
-
-        // Вызываем метод, который мы тестируем
-        actorService.updateActorFromDto(actorDto, actor);
-
-        // Проверяем, что метод корректно обновил имя актера
-        assertEquals("Updated Actor Name", actor.getName());
     }
 }
 
