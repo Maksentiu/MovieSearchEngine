@@ -13,19 +13,19 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
-public class CommentServiceTest {
+class CommentServiceTest {
 
     private CommentService commentService;
     private CommentRepository commentRepository;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         commentRepository = mock(CommentRepository.class);
         commentService = new CommentService(commentRepository);
     }
 
     @Test
-    public void testGetAllComments() {
+    void testGetAllComments() {
         // Создаем тестовый комментарий и список комментариев
         Comment comment = new Comment();
         comment.setId(1L);
@@ -45,7 +45,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void testGetCommentById() {
+    void testGetCommentById() {
         // Создаем тестовый комментарий
         Comment comment = new Comment();
         comment.setId(1L);
@@ -63,7 +63,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void testCreateComment() {
+    void testCreateComment() {
         // Создаем тестовый DTO комментария
         CommentDto commentDto = new CommentDto();
         commentDto.setId(1L);
@@ -82,7 +82,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void testDeleteComment() {
+    void testDeleteComment() {
         // Проверяем, что метод вызывает deleteById с правильным id
         commentService.deleteComment(1L);
         // Проверяем, что метод deleteById был вызван один раз для комментария с id 1L
@@ -90,7 +90,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void testUpdateComment() {
+    void testUpdateComment() {
         // Создаем тестовый комментарий и его DTO
         CommentDto commentDto = new CommentDto();
         commentDto.setId(1L);
@@ -113,7 +113,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void testCommentToCommentDto() {
+    void testCommentToCommentDto() {
         // Создаем тестовый комментарий
         Comment comment = new Comment();
         comment.setId(1L);
@@ -128,7 +128,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void testCommentDtoToComment() {
+    void testCommentDtoToComment() {
         // Создаем тестовый DTO комментария
         CommentDto commentDto = new CommentDto();
         commentDto.setId(1L);
@@ -143,7 +143,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void testUpdateCommentFromDto() {
+    void testUpdateCommentFromDto() {
         // Создаем тестовый комментарий и его DTO
         CommentDto commentDto = new CommentDto();
         commentDto.setId(1L);
