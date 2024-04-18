@@ -59,7 +59,7 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void testGetAllMovies() {
+    void testGetAllMovies() {
         // Создаем тестовые данные
         List<Movie> movies = List.of(
                 new Movie(1L, "Movie 1", 2022, "Director 1"),
@@ -78,7 +78,7 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void testGetMoviesReleasedAfterYear() {
+    void testGetMoviesReleasedAfterYear() {
         // Создаем тестовые данные
         List<Movie> movies = List.of(
                 new Movie(1L, "Movie 1", 2022, "Director 1"),
@@ -97,7 +97,7 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void testGetMovieById() {
+    void testGetMovieById() {
         // Создаем тестовые данные
         Movie movie = new Movie(1L, "Test Movie", 2022, "Test Director");
         MovieDto movieDto = new MovieDto();
@@ -119,9 +119,76 @@ public class MovieServiceTest {
         assertEquals("Test Director", resultMovieDto.getDirector());
     }
 
+    @Test
+    void testCreateMovie() {
+        // Создаем тестовые данные
+        MovieDto movieDto = new MovieDto();
+        movieDto.setTitle("Test Movie");
+        movieDto.setYear(2022);
+        movieDto.setDirector("Test Director");
+
+        ActorDto actorDto = new ActorDto();
+        actorDto.setId(1L);
+        actorDto.setName("John Doe");
+
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(1L);
+        commentDto.setContent("Test Comment");
+
+        movieDto.setActors(Set.of(actorDto));
+        movieDto.setComments(Set.of(commentDto));
+
+        Actor actor = new Actor();
+        actor.setId(1L);
+        actor.setName("John Doe");
+
+        Comment comment = new Comment();
+        comment.setId(1L);
+        comment.setContent("Test Comment");
+
+        // Устанавливаем поведение мокитированных репозиториев
+        when(actorService.actorExist(actorDto)).thenReturn(actor);
+        when(commentService.commentDtoToComment(commentDto)).thenReturn(comment);
+        when(movieRepository.save(any(Movie.class))).thenReturn(new Movie());
+
+        // Вызываем метод, который мы тестируем
+        MovieDto createdMovieDto = movieService.createMovie(movieDto);
+
+        // Проверяем, что результат соответствует ожиданиям
+        assertEquals("Test Movie", createdMovieDto.getTitle());
+    }
 
     @Test
-    public void testDeleteMovie() {
+    void testUpdateMovie() {
+        // Создаем тестовые данные
+        MovieDto movieDto = new MovieDto();
+        movieDto.setId(1L);
+        movieDto.setTitle("Updated Movie");
+
+        ActorDto actorDto = new ActorDto();
+        actorDto.setId(1L);
+        actorDto.setName("John Doe");
+
+        movieDto.setActors(Set.of(actorDto));
+
+        Actor existingActor = new Actor();
+        existingActor.setId(1L);
+        existingActor.setName("John Doe");
+
+        // Устанавливаем поведение мокитированных репозиториев
+        when(movieRepository.findById(1L)).thenReturn(Optional.of(new Movie()));
+        when(actorService.actorExist(actorDto)).thenReturn(existingActor);
+        when(movieRepository.save(any(Movie.class))).thenReturn(new Movie());
+
+        // Вызываем метод, который мы тестируем
+        MovieDto updatedMovieDto = movieService.updateMovie(1L, movieDto);
+
+        // Проверяем, что результат соответствует ожиданиям
+        assertEquals("Updated Movie", updatedMovieDto.getTitle());
+    }
+
+    @Test
+    void testDeleteMovie() {
         // Устанавливаем поведение мокитированного репозитория
         doNothing().when(movieRepository).deleteById(1L);
 
@@ -133,7 +200,7 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void testMoviesToMovieDtos() {
+    void testMoviesToMovieDtos() {
         // Создаем тестовые данные
         List<Movie> movies = List.of(
                 new Movie(1L, "Movie 1", 2022, "Director 1"),
@@ -151,7 +218,7 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void testMovieToMovieDto() {
+    void testMovieToMovieDto() {
         // Создаем тестовые данные
         Movie movie = new Movie(1L, "Test Movie", 2022, "Test Director");
 
