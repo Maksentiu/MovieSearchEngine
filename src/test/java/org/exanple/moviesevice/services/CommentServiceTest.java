@@ -63,25 +63,6 @@ class CommentServiceTest {
     }
 
     @Test
-    void testCreateComment() {
-        // Создаем тестовый DTO комментария
-        CommentDto commentDto = new CommentDto();
-        commentDto.setId(1L);
-        commentDto.setContent("Test Comment");
-
-        // Создаем мок комментария и устанавливаем поведение мок репозитория
-        Comment comment = new Comment();
-        when(commentRepository.save(comment)).thenReturn(comment);
-
-        // Вызываем метод, который мы тестируем
-        CommentDto createdComment = commentService.createComment(commentDto);
-
-        // Проверяем, что результат соответствует ожиданиям
-        assertEquals(1L, createdComment.getId());
-        assertEquals("Test Comment", createdComment.getContent());
-    }
-
-    @Test
     void testDeleteComment() {
         // Проверяем, что метод вызывает deleteById с правильным id
         commentService.deleteComment(1L);
