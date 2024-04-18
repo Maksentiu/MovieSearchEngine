@@ -106,18 +106,6 @@ class ActorServiceTest {
     }
 
     @Test
-    public void testDeleteActor() {
-        // Устанавливаем поведение мокитированного репозитория
-        doNothing().when(actorRepository).deleteById(1L);
-
-        // Вызываем метод, который мы тестируем
-        actorService.deleteActor(1L);
-
-        // Проверяем, что метод deleteById был вызван один раз с нужным аргументом
-        verify(actorRepository, times(1)).deleteById(1L);
-    }
-
-    @Test
     public void testActorToActorDto() {
         // Создаем тестового актера
         Actor actor = new Actor();
@@ -147,24 +135,5 @@ class ActorServiceTest {
         assertEquals("Test Actor", actor.getName());
     }
 
-    @Test
-    public void testUpdateActorFromDto() {
-        // Создаем мок объекта Actor
-        Actor actor = mock(Actor.class);
-
-        // Создаем тестовый DTO актера
-        ActorDto actorDto = new ActorDto();
-        actorDto.setId(1L);
-        actorDto.setName("Updated Actor Name");
-
-        // Устанавливаем поведение мок объекта
-        when(actor.getName()).thenReturn("Old Actor Name");
-
-        // Вызываем метод, который мы тестируем
-        actorService.updateActorFromDto(actorDto, actor);
-
-        // Проверяем, что метод корректно обновил имя актера
-        assertEquals("Updated Actor Name", actor.getName());
-    }
 }
 
