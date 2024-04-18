@@ -106,6 +106,23 @@ class ActorServiceTest {
     }
 
     @Test
+    void testDeleteActor() {
+        // Создаем мок объекта Actor
+        Actor actor = mock(Actor.class);
+
+        // Устанавливаем поведение мок объекта
+        doNothing().when(actor).removeMovies();
+        when(actorRepository.findById(1L)).thenReturn(Optional.of(actor));
+
+        // Вызываем метод, который мы тестируем
+        actorService.deleteActor(1L);
+
+        // Проверяем, что метод removeMovies и deleteById были вызваны
+        verify(actor, times(1)).removeMovies();
+        verify(actorRepository, times(1)).deleteById(1L);
+    }
+
+    @Test
     void testActorToActorDto() {
         // Создаем тестового актера
         Actor actor = new Actor();
