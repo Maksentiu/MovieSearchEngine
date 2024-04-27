@@ -17,9 +17,9 @@ import static org.mockito.Mockito.when;
 
 class MovieControllerTest {
 
-    private final MovieController movieController;
-    private final MovieService movieService;
-    private final ObjectMapper objectMapper;
+    private MovieController movieController;
+    private MovieService movieService;
+    private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
