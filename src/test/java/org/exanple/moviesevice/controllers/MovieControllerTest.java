@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.moviservice.controllers.MovieController;
 import org.example.moviservice.dto.MovieDto;
 import org.example.moviservice.services.MovieService;
+import org.example.moviservice.services.RequestCounterService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -15,16 +16,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class MovieControllerTest {
+public class MovieControllerTest {
 
     private MovieController movieController;
     private MovieService movieService;
+    private RequestCounterService requestCounterService;
     private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
         movieService = mock(MovieService.class);
-        movieController = new MovieController(movieService);
+        requestCounterService = mock(RequestCounterService.class);
+        movieController = new MovieController(movieService, requestCounterService);
         objectMapper = new ObjectMapper();
     }
 

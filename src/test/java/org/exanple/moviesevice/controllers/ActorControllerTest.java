@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.moviservice.controllers.ActorController;
 import org.example.moviservice.dto.ActorDto;
 import org.example.moviservice.services.ActorService;
+import org.example.moviservice.services.RequestCounterService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -18,12 +19,14 @@ class ActorControllerTest {
 
     private ActorController actorController;
     private ActorService actorService;
+    private RequestCounterService requestCounterService;
     private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
         actorService = mock(ActorService.class);
-        actorController = new ActorController(actorService);
+        requestCounterService = mock(RequestCounterService.class);
+        actorController = new ActorController(actorService, requestCounterService);
         objectMapper = new ObjectMapper();
     }
 

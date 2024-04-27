@@ -1,6 +1,7 @@
 package org.example.moviservice.controllers;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.moviservice.dto.ActorDto;
 import org.example.moviservice.services.ActorService;

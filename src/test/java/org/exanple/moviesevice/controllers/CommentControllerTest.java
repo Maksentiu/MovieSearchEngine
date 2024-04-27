@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.moviservice.controllers.CommentController;
 import org.example.moviservice.dto.CommentDto;
 import org.example.moviservice.services.CommentService;
+import org.example.moviservice.services.RequestCounterService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -18,13 +19,15 @@ import static org.mockito.Mockito.when;
 class CommentControllerTest {
 
     private CommentController commentController;
+    private RequestCounterService requestCounterService;
     private CommentService commentService;
     private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
         commentService = mock(CommentService.class);
-        commentController = new CommentController(commentService);
+        requestCounterService = mock(RequestCounterService.class);
+        commentController = new CommentController(commentService, requestCounterService);
         objectMapper = new ObjectMapper();
     }
 
