@@ -15,10 +15,7 @@ import org.example.moviservice.repositories.CustomMovie;
 import org.example.moviservice.repositories.MovieRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -216,5 +213,31 @@ public class MovieService {
         movie.setActors(actors);
 
         return movie;
+    }
+
+    public void createMovieBulk(List<MovieDto> movieDtoList) {
+        movieDtoList.forEach(cipherDto -> {
+            try {
+                createMovie(cipherDto);
+            } catch (Exception e) {
+                log.error("Error creating movie: " + e.getMessage());
+            }
+        });
+    }
+
+    public void updateCipherBulk(List<MovieDto> cipherDtoList) {
+        List<String> errors = new ArrayList<>();
+        cipherDtoList.forEach(movieDto -> {
+            try {
+                Long id = movieDto.getId();
+                if (id != null) {
+                    updateMovie(id, movieDto);
+                } else {
+                    log.error("Error updating cipher: No ID provided for cipher");
+                }
+            } catch (Exception e) {
+                log.error("Error updating cipher: " + e.getMessage());
+            }
+        });
     }
 }

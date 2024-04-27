@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-class MovieServiceTest {
+public class MovieServiceTest {
 
     @Mock
     private MovieRepository movieRepository;

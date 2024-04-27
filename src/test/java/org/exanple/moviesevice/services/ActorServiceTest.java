@@ -47,7 +47,7 @@ class ActorServiceTest {
     }
 
     @Test
-    void testGetActorById() {
+    public void testGetActorById() {
         // Создаем тестовые данные
         Actor actor = new Actor();
         actor.setId(1L);

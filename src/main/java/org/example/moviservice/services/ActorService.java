@@ -27,7 +27,8 @@ public class ActorService {
     public ActorDto getActorById(Long id) {
         log.info("Trying find actors by id from database");
         Actor actor = actorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Actor not found with id: " + id));
+                .orElseThrow(() ->
+                new RuntimeException("Actor not found with id: " + id));
         return actorToActorDto(actor);
     }
 
