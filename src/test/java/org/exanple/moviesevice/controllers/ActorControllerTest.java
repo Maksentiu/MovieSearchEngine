@@ -16,9 +16,9 @@ import static org.mockito.Mockito.when;
 
 class ActorControllerTest {
 
-    private ActorController actorController;
-    private ActorService actorService;
-    private ObjectMapper objectMapper;
+    private final ActorController actorController;
+    private final ActorService actorService;
+    private final ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
