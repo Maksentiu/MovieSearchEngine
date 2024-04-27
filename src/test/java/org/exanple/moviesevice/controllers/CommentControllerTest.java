@@ -17,9 +17,9 @@ import static org.mockito.Mockito.when;
 
 class CommentControllerTest {
 
-    private CommentController commentController;
-    private CommentService commentService;
-    private ObjectMapper objectMapper;
+    private final CommentController commentController;
+    private final CommentService commentService;
+    private final ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
