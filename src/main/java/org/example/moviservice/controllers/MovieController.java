@@ -62,9 +62,9 @@ public class MovieController {
     }
 
     @PostMapping("/bulk-update")
-    public ResponseEntity<String> updateCipherBulk(@RequestBody List<MovieDto> movieDtoList) {
+    public ResponseEntity<String> updateMovieBulk(@RequestBody List<MovieDto> movieDtoList) {
         log.info(String.valueOf(requestCounterService.incrementAndGet()));
-        movieService.updateCipherBulk(movieDtoList);
+        movieService.updateMovieBulk(movieDtoList);
         return ResponseEntity.status(HttpStatus.OK).body("Bulk movie update successful");
     }
 

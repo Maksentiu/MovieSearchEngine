@@ -225,9 +225,8 @@ public class MovieService {
         });
     }
 
-    public void updateCipherBulk(List<MovieDto> cipherDtoList) {
-        List<String> errors = new ArrayList<>();
-        cipherDtoList.forEach(movieDto -> {
+    public void updateMovieBulk(List<MovieDto> movieDtoList) {
+        movieDtoList.forEach(movieDto -> {
             try {
                 Long id = movieDto.getId();
                 if (id != null) {
