@@ -94,6 +94,35 @@ class MovieControllerTest {
     }
 
     @Test
+    void testCreateMovieBulk() throws Exception {
+        // Arrange
+        List<MovieDto> movieDtoList = List.of(new MovieDto(), new MovieDto());
+        String requestBody = objectMapper.writeValueAsString(movieDtoList);
+
+        // Act
+        ResponseEntity<String> responseEntity = movieController.createMovieBulk(movieDtoList);
+
+        // Assert
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        assertEquals("Bulk movie creation successful", responseEntity.getBody());
+    }
+
+    @Test
+    void testUpdateMovieBulk() throws Exception {
+        // Arrange
+        List<MovieDto> movieDtoList = List.of(new MovieDto(), new MovieDto());
+        String requestBody = objectMapper.writeValueAsString(movieDtoList);
+
+        // Act
+        ResponseEntity<String> responseEntity = movieController.updateMovieBulk(movieDtoList);
+
+        // Assert
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals("Bulk movie update successful", responseEntity.getBody());
+    }
+
+
+    @Test
     void testUpdateMovie() throws Exception {
         // Arrange
         Long id = 1L;
