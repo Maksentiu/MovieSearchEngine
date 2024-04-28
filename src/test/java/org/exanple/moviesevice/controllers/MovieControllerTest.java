@@ -124,4 +124,3 @@ class MovieControllerTest {
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
     }
 }
-
